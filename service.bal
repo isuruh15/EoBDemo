@@ -30,27 +30,11 @@ isolated final map<ExplanationOfBenefitSourceConnect> profileImpl = {
     "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit": new InternationalExplanationofbenefitSourceConnect()
 };
 
-# A service representing a network-accessible API
-# bound to port `9090`.
-// @http:ServiceConfig {
-//     interceptors: [
-//         new r4:FHIRReadRequestInterceptor(apiConfig),
-//         new r4:FHIRSearchRequestInterceptor(apiConfig),
-//         new r4:FHIRCreateRequestInterceptor(apiConfig),
-//         new r4:FHIRResponseErrorInterceptor(),
-//         new r4:FHIRRequestErrorInterceptor(),
-//         new r4:FHIRResponseInterceptor(apiConfig)
-//     ]
-// }
-
 service / on new fhir:Listener(9090, apiConfig) {
-    // service / on new http:Listener(9090) {
-
 
     // Read the current state of the resource
     resource function get fhir/r4/ExplanationOfBenefit/[string id](r4:FHIRContext fhirContext) returns @http:Payload {mediaType: ["application/fhir+json", "application/fhir+xml"]} map<json>|error|r4:FHIRError {
 
-        // r4:FHIRContext fhirContext = check r4:getFHIRContext(ctx);
         r4:FHIRRequest resourceName = <r4:FHIRRequest>fhirContext.getFHIRRequest();
 
         log:printDebug(string `FHIR API request is received. Interaction: read,
@@ -71,7 +55,6 @@ service / on new fhir:Listener(9090, apiConfig) {
     // Search the resource type based on some filter criteria
     isolated resource function get fhir/r4/ExplanationOfBenefit(r4:FHIRContext fhirContext) returns @http:Payload {mediaType: ["application/fhir+json", "application/fhir+xml"]} map<json>|r4:FHIRError {
 
-        // r4:FHIRContext fhirContext = check r4:getFHIRContext(ctx);
         r4:FHIRRequest resourceName = <r4:FHIRRequest>fhirContext.getFHIRRequest();
 
         r4:RequestSearchParameter[]? & readonly profileUrls = fhirContext.getRequestSearchParameter("_profile");
@@ -93,7 +76,6 @@ service / on new fhir:Listener(9090, apiConfig) {
     // Create a new resource with a server assigned id
     isolated resource function post fhir/r4/ExplanationOfBenefit(r4:FHIRContext fhirContext, r4:ExplanationOfBenefit payload) returns @http:Payload {mediaType: ["application/fhir+json", "application/fhir+xml"]} map<json>|error|r4:FHIRError {
 
-        // r4:FHIRContext fhirContext = check r4:getFHIRContext(ctx);
         r4:FHIRRequest resourceName = <r4:FHIRRequest>fhirContext.getFHIRRequest();
 
         log:printDebug(string `FHIR API request is received. Interaction: create,
