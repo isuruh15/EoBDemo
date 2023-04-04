@@ -1,2 +1,9 @@
 [ballerina.log]
 level = "INFO"
+
+sourceSystem = "http://localhost:9091/"
+
+
+[ballerina.http.accessLogConfig]
+# Enable printing access logs on the Console. The default value is `false`.
+console = true
