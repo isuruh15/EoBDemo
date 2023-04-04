@@ -1,7 +1,7 @@
 [ballerina.log]
 level = "INFO"
 
-sourceSystem = "http://localhost:9091/"
+sourceSystem = "https://run.mocky.io/v3/1d9e8ba3-045c-42d9-a4d0-536d21d521af"
 
 
 [ballerina.http.accessLogConfig]
