@@ -1,0 +1,23 @@
+[package]
+org = "isurusamaranayake"
+name = "healthcare.fhir.r4.api.explanationofbenefit"
+version = "0.2.2-snapshot"
+distribution = "2201.3.1"
+authors = ["WSO2 Healthcare"]
+keywords = ["Healthcare", "FHIR", "ExplanationOfBenefit", "r4", "international"]
+template = true
+
+[build-options]
+observabilityIncluded = true
+
+[[dependency]]
+org = "wso2healthcare"
+name = "healthcare.fhir.r4"
+version = "0.1.15"
+repository="local"
+
+[[dependency]]
+org = "wso2healthcare"
+name = "healthcare.base"
+version = "0.1.3"
+
